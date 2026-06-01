@@ -1,50 +1,8 @@
-"""
-main.py — Spam Email Detection: Command-Line Interface
-=======================================================
-
-This is the main entry point for the Spam Email Detection project.
-
-It provides an interactive menu with three options:
-  1. Train the Model   — runs the full training pipeline
-  2. Predict a Message — prompts for custom email text and classifies it
-  3. Exit              — quits the program
-
-Usage:
-    python main.py
-
-Before predicting, make sure you've trained the model at least once
-(option 1).  The trained model is saved to  models/  and reused for
-all future predictions until you retrain.
-"""
-
 import sys
 from src.train import train_and_evaluate
 from src.predict import predict_message, load_model
 
 
-# ═══════════════════════════════════════════════════════════════════════════
-# Banner & Menu
-# ═══════════════════════════════════════════════════════════════════════════
-
-BANNER = r"""
-╔══════════════════════════════════════════════════════════════╗
-║                                                              ║
-║        📧  SPAM EMAIL DETECTION SYSTEM  📧                  ║
-║        ─────────────────────────────────                     ║
-║        Machine Learning  •  NLP  •  Naive Bayes              ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
-"""
-
-MENU = """
-┌──────────────────────────────────────┐
-│           MAIN MENU                  │
-├──────────────────────────────────────┤
-│  [1]  Train the Model                │
-│  [2]  Predict an Email / Message     │
-│  [3]  Exit                           │
-└──────────────────────────────────────┘
-"""
 
 
 def display_prediction(result: dict) -> None:
@@ -97,7 +55,7 @@ def run_prediction_mode() -> None:
     
     while True:
         try:
-            user_input = input("📩  Enter message: ").strip()
+            user_input = input(" Enter message: ").strip()
         except (EOFError, KeyboardInterrupt):
             print()
             break
@@ -128,7 +86,7 @@ def main() -> None:
         try:
             choice = input("  ➤  Select an option (1/2/3): ").strip()
         except (EOFError, KeyboardInterrupt):
-            print("\n[INFO] Goodbye! 👋")
+            print("\n[INFO] Goodbye!")
             sys.exit(0)
 
         if choice == "1":
@@ -147,15 +105,12 @@ def main() -> None:
 
         elif choice == "3":
             # ------ Exit ------
-            print("\n[INFO] Thank you for using Spam Detection! Goodbye! 👋\n")
+            print("\n[INFO] Thank you for using Spam Detection! Goodbye! \n")
             sys.exit(0)
 
         else:
             print("\n[WARNING] Invalid option. Please enter 1, 2, or 3.\n")
 
 
-# ---------------------------------------------------------------------------
-# Script entry point
-# ---------------------------------------------------------------------------
 if __name__ == "__main__":
     main()
