@@ -94,7 +94,7 @@ def run_prediction_mode() -> None:
 
     print("Enter an email or message to classify.")
     print("Type  'quit'  or  'exit'  to return to the main menu.\n")
-
+    
     while True:
         try:
             user_input = input("📩  Enter message: ").strip()
